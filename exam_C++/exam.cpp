@@ -3,96 +3,11 @@
 #include <vector>
 #include <limits> //cin.ignore
 #include <fstream>
+#include "Employee.h"
+#include "Manager.h"
+#include "valid.h"
 
 using namespace std;
-
-class Employee {
-private:
-    string name;
-    int id;
-    double salary;
-
-public:
-    Employee(const string& name, int id, double salary) {
-        this->name = name;
-        this->id = id;
-        this->salary = salary;
-    }
-
-    string getName() const {
-        return name;
-    }
-
-    int getId() const {
-        return id;
-    }
-
-    double getSalary() const {
-        return salary;
-    }
-
-    void setSalary(double newSalary) {
-        if (newSalary >= 0) {
-            salary = newSalary;
-        }
-    }
-};
-
-class Manager : public Employee {
-private:
-    string department;
-
-public:
-    Manager(const string& name, int id, double salary, const string& department) : Employee(name, id, salary), department(department) {}
-
-    string getDepartment() const{
-        return department;
-    }
-
-    double getSalary() const {
-        return Employee::getSalary() * 1.1;
-    }
-};
-
-bool isValidEmployeeData(const string&  name, int id, double salary) {
-    if (name.empty()) {
-        return false;
-    }
-    if (id < 0) {
-        return false;
-    }
-    if (salary <= 0) {
-        return false;
-    }
-    return true;
-}
-
-void saveToFile(const std::vector<Employee>& employees, const std::string& filename) {
-    std::ofstream file(filename);
-    
-    if (!file.is_open()) {
-        std::cout << "cannot open file" << endl;
-        return;
-    }
-    
-    // Сохраняем данные каждого сотрудника
-    for (const auto& employee : employees) {
-        file << employee.getId() << " "
-             << employee.getName() << " "
-             << employee.getSalary() << "\n";
-    }
-    
-    file.close();
-
-    if (file.fail()) {
-        std::cout << "error in saving" << endl;
-    } else {
-        std::cout << "savid in " << filename << endl;
-    }
-
-}
-
-
 
 int main() {
     vector<Employee> employees;
