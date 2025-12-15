@@ -13,7 +13,7 @@ public:
     Manager(const string& name, int id, double salary, const string& department);
 
     string getDepartment() const;
-    double getSalary() const override; // переопределение
+    double getSalary() const override;
 };
 
 #endif
