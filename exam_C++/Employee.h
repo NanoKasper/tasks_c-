@@ -11,12 +11,12 @@ private:
     double salary;
 
 public:
-    Employee(); // конструктор по умолчанию
+    Employee();
     Employee(const string& name, int id, double salary);
 
     string getName() const;
     int getId() const;
-    virtual double getSalary() const; // виртуальный для полиморфизма
+    virtual double getSalary() const; 
     void setSalary(double newSalary);
 };
 
